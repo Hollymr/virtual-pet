@@ -21,13 +21,9 @@ namespace VirtualPet
             {
                 myPet.MainMenu();
                 
-
-
-
-
-
-
-
+                //feed pet
+                //take pet to restroom
+                //play with pet
 
                 
             }

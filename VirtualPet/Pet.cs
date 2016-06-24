@@ -9,20 +9,21 @@ namespace VirtualPet
     class Pet
     {
         public string PetName { get; set; }
-        public int Feed { get; set; }
-        public int Bathroom { get; set; }
+        public int Hunger { get; set; }
+        public int Waste { get; set; }
         public int Play { get; set; }
         //public int TakeToVet { get; set; }
 
         public Pet()
         {
 
-            Feed = 10;
-            Bathroom = 10;
+            Hunger = 0;
+            Waste = 0;
             Play = 10;
             //TakeToVet = 10;
         }
 
+   
 
 
         public int MainMenu()
@@ -36,61 +37,65 @@ namespace VirtualPet
             Console.WriteLine("3. Play");
             Console.WriteLine("4. Take to Vet");
 
-            while (menuChoice < 1 || menuChoice > 4)
+
+
+            while (true)
             {
-                try
-                {
-                    string userChoice = Console.ReadLine();
-                    menuChoice = Convert.ToInt32(userChoice);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Please enter number 1-4");
-                }
-            }
+                string userChoice = Console.ReadLine();
+                menuChoice = Convert.ToInt32(userChoice);
 
-            while(true)
+                if (menuChoice == 1)
+                    {
+                        Feed();
+
+                    }
+                    else if (menuChoice == 2)
+                    {
+                        Bathroom();
+                    }
+                    else if (menuChoice == 3)
+                    {
+                        Exercise();
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid entry, please choose number from list above.");
+                    }
+
+                } 
+       
+        }
+            
+        
+
+        public void Feed()
+        {
+            Hunger += 1;
+            Console.WriteLine(PetName + "'s hunger level is now at {0}", Hunger);
+            if (Hunger == 10)
             {
-                if( menuChoice == 1)
-                {
-                    Hunger();
-                    
-                }
-              else if (menuChoice == 2)
-                {
-                    Waste();
-                }
-               else if (menuChoice == 3)
-                {
-                    Exercise();
-                    
-                }
-                
+                Console.WriteLine("Your pet is full!");
             }
-            return menuChoice;
+           
+              
         }
 
-        public int Hunger()
+        public void Bathroom()
         {
-            Console.WriteLine(PetName + "'s hunger level is at {0}", Feed);
-            return 0;
+            
         }
-
-        public int Waste()
+        public void Exercise()
         {
-            return 0; 
-        }
-        public int Exercise()
-        {
-            return 0;
+            
         }
        //public int VetVisit()
        // {
        //  return 0;
        // }
-        private int Tick()
+        private void Tick()
         {
-            return 0;
+            
         }
 
        
