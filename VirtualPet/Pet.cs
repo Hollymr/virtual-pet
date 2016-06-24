@@ -17,14 +17,31 @@ namespace VirtualPet
         public Pet()
         {
 
-            Hunger = 0;
-            Waste = 0;
-            Play = 10;
-            //TakeToVet = 10;
+            Hunger = 5;
+            Waste =  5;
+            Play =   5;
+            
         }
 
-   
+        public int PetHealthStatus()
+        {
+            Console.Clear();
 
+
+            Console.WriteLine(PetName + "'s Health Status:");
+
+            Console.WriteLine("Health is full at 10.");
+
+            Console.WriteLine("\nHunger: " + Hunger);
+            Console.WriteLine("Waste:  " + Waste);
+            Console.WriteLine("Play:   " + Play);
+
+            Console.WriteLine("\nPress enter to hangout with " + PetName);
+            Console.ReadKey();
+            return MainMenu();
+
+
+        }
 
         public int MainMenu()
         {
@@ -35,7 +52,7 @@ namespace VirtualPet
             Console.WriteLine("\n1. Feed");
             Console.WriteLine("2. Bathroom");
             Console.WriteLine("3. Play");
-            Console.WriteLine("4. Take to Vet");
+            Console.WriteLine("4. Health Status");
 
 
 
@@ -47,7 +64,6 @@ namespace VirtualPet
                 if (menuChoice == 1)
                     {
                         Feed();
-
                     }
                     else if (menuChoice == 2)
                     {
@@ -56,7 +72,10 @@ namespace VirtualPet
                     else if (menuChoice == 3)
                     {
                         Exercise();
-
+                    }
+                    else if (menuChoice == 4)
+                    {
+                        PetHealthStatus();
                     }
                     else
                     {
@@ -71,28 +90,53 @@ namespace VirtualPet
 
         public void Feed()
         {
-            Hunger += 1;
-            Console.WriteLine(PetName + "'s hunger level is now at {0}", Hunger);
-            if (Hunger == 10)
+            for(int i = 1; i <= 1; i++)
             {
-                Console.WriteLine("Your pet is full!");
-            }
-           
-              
+                if(Hunger >= 10)
+                {
+                    Console.WriteLine("Your pet is full!");                    
+                }
+                else            
+                {
+                    Hunger ++;
+                    Waste -= 1;
+                    PetHealthStatus();
+                }
+            }                         
         }
 
         public void Bathroom()
         {
-            
+            for (int i = 1; i <= 1; i++)
+            {
+                if (Waste >= 10)
+                {
+                    Console.WriteLine(PetName + " doesn't need to go out!");
+                }
+               else
+                {
+                    Waste ++;
+                    PetHealthStatus();
+                }
+            }
         }
         public void Exercise()
         {
-            
+            for (int i = 1; i <= 1; i++)
+            {
+                if (Play >= 10)
+                {
+                    Console.WriteLine(PetName + " doesn't want to play!");
+                }
+                else
+                {
+                    Play += 2 ;
+                    Hunger -= 2;
+                    PetHealthStatus();
+                }
+            }
         }
-       //public int VetVisit()
-       // {
-       //  return 0;
-       // }
+       
         private void Tick()
         {
             
