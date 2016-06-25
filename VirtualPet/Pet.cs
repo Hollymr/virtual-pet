@@ -18,14 +18,15 @@ namespace VirtualPet
         {
 
             Hunger = 5;
-            Waste =  5;
-            Play =   5;
-            
+            Waste = 5;
+            Play = 5;
+
         }
 
         public int PetHealthStatus()
         {
             Console.Clear();
+            
 
 
             Console.WriteLine(PetName + "'s Health Status:");
@@ -60,49 +61,56 @@ namespace VirtualPet
             {
                 string userChoice = Console.ReadLine();
                 menuChoice = Convert.ToInt32(userChoice);
-
+                
                 if (menuChoice == 1)
-                    {
-                        Feed();
-                    }
-                    else if (menuChoice == 2)
-                    {
-                        Bathroom();
-                    }
-                    else if (menuChoice == 3)
-                    {
-                        Exercise();
-                    }
-                    else if (menuChoice == 4)
-                    {
-                        PetHealthStatus();
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid entry, please choose number from list above.");
-                    }
+                {
+                    Feed();
+                   
+                }
+                else if (menuChoice == 2)
+                {
+                    Bathroom();
+                    
+                }
+                else if (menuChoice == 3)
+                {
+                    Exercise();
+                    
+                }
+                else if (menuChoice == 4)
+                {
+                    PetHealthStatus();
+                    
+                }
+                else
+                {
+                    Console.WriteLine("Invalid entry, please choose number from list above.");
+                }
 
-                } 
-       
+            }
+
+
         }
-            
-        
+
+
 
         public void Feed()
         {
-            for(int i = 1; i <= 1; i++)
+            Tick();
+            for (int i = 1; i <= 1; i++)
             {
-                if(Hunger >= 10)
+                if (Hunger >= 10)
                 {
-                    Console.WriteLine("Your pet is full!");                    
+                    Console.WriteLine("Your pet is full!");
                 }
-                else            
+                else
                 {
-                    Hunger ++;
+                    Hunger += 2;
                     Waste -= 1;
                     PetHealthStatus();
                 }
-            }                         
+            }
+           
         }
 
         public void Bathroom()
@@ -113,12 +121,14 @@ namespace VirtualPet
                 {
                     Console.WriteLine(PetName + " doesn't need to go out!");
                 }
-               else
+                else
                 {
-                    Waste ++;
+                    Waste++;
                     PetHealthStatus();
                 }
             }
+            
+        
         }
         public void Exercise()
         {
@@ -130,19 +140,24 @@ namespace VirtualPet
                 }
                 else
                 {
-                    Play += 2 ;
+                    Play += 2;
                     Hunger -= 2;
                     PetHealthStatus();
                 }
             }
-        }
-       
-        private void Tick()
-        {
             
         }
 
-       
+        public int Tick()
+        {
+            Hunger -= 1;            
+            Play += 1;
+
+            return 0;
+
+        }
+
+
 
 
 

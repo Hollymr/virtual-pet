@@ -17,16 +17,17 @@ namespace VirtualPet
             Console.WriteLine("\nPlease name your pet.");
             myPet.PetName = Console.ReadLine();
 
-           
+
             while (true)
             {
-                myPet.PetHealthStatus();
                 
+                myPet.PetHealthStatus();
+
                 //feed pet
                 //take pet to restroom
                 //play with pet
 
-                
+               
             }
 
             Console.ReadKey();
