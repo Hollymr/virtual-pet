@@ -60,8 +60,11 @@ namespace VirtualPet
             while (true)
             {
                 string userChoice = Console.ReadLine();
+                if (userChoice == "1" || userChoice == "2" || userChoice == "3" || userChoice == "4")
+                {
                 menuChoice = Convert.ToInt32(userChoice);
-                
+                }               
+                                           
                 if (menuChoice == 1)
                 {
                     Feed();
@@ -84,7 +87,9 @@ namespace VirtualPet
                 }
                 else
                 {
-                    Console.WriteLine("Invalid entry, please choose number from list above.");
+                    Console.WriteLine("Invalid entry, please choose number from list above, press any key to continue.");
+                    Console.ReadLine();
+                    return MainMenu();
                 }
 
             }
