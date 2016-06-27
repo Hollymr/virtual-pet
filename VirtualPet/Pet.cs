@@ -91,16 +91,11 @@ namespace VirtualPet
                     Console.ReadLine();
                     return MainMenu();
                 }
-
             }
-
-
         }
 
-
-
         public void Feed()
-        {
+        {// Tick goes off everytime animal is fed
             Tick();
             for (int i = 1; i <= 1; i++)
             {
@@ -154,7 +149,7 @@ namespace VirtualPet
         }
 
         public int Tick()
-        {
+        {// Put Tick in Feed()
             Hunger -= 1;            
             Play += 1;
 
