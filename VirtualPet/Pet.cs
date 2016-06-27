@@ -9,10 +9,73 @@ namespace VirtualPet
     class Pet
     {
         public string PetName { get; set; }
-        public int Hunger { get; set; }
-        public int Waste { get; set; }
-        public int Play { get; set; }
-        //public int TakeToVet { get; set; }
+        public int MaxHealth { get; set; }
+        public int MinHealth { get; set; }
+        private int _hunger;
+        public int Hunger
+        {            
+            get
+            {
+                return _hunger;
+            }                                         
+           set
+            {
+                _hunger = value;
+                if (_hunger > 10)
+                {
+                    _hunger = MaxHealth;
+                }
+                if (_hunger < MinHealth)
+                {
+                    //_hunger = MinHealth;
+                    IsAlive();
+                    
+                }
+            }
+        }
+        private int _waste;
+        public int Waste
+        {
+            get
+            {
+                return _waste;
+            } 
+            set 
+            {
+                _waste = value;
+                if(_waste > 10)
+                {
+                    _waste = MaxHealth;
+                }
+                if (_waste < MinHealth)
+                {
+                    //_waste = MinHealth;
+                    IsAlive();
+                }
+            }
+                }
+        private int _play;
+        public int Play
+        {
+            get
+            {
+                return _play;
+            }
+            set
+            {
+                _play = value;
+                if (_play > 10)
+                {
+                    _play = MaxHealth;
+                }
+                if (_play < MinHealth)
+                {
+                    //_play = MinHealth;
+                    IsAlive();
+                }
+            }
+        }
+
 
         public Pet()
         {
@@ -20,34 +83,70 @@ namespace VirtualPet
             Hunger = 5;
             Waste = 5;
             Play = 5;
+            MaxHealth = 10;
+            MinHealth = 1;
 
         }
 
-        public int PetHealthStatus()
+        public void PetHealthStatus()
         {
-            Console.Clear();
             
+            if(!IsAlive())
+            {
+                Console.WriteLine("You let your sharks health get to low, so "+PetName+ " escaped into the wild!");
+            }
+
+            else
+            { Console.Clear();
+                Console.WriteLine(PetName + "'s Health Status:");
+                Console.WriteLine("           _________         .     .    ");
+                Console.WriteLine("          (..       \\_    ,  |\\   /|   ");
+                Console.WriteLine("           \\       0  \\  /|    \\\\//   ");
+                Console.WriteLine("            \\______    \\/ |   \\   /     ");
+                Console.WriteLine("                vvvv\\   \\ |   /   |     ");
+                Console.WriteLine("                 ^^^^  ==  \\_/    |     ");
+                Console.WriteLine("                 `\\_ ===   \\.     |    ");
+                Console.WriteLine("                 / /\\_   \\ /      |    ");
+                Console.WriteLine("                 |/   \\_  \\|      /     ");
+                Console.WriteLine("                        \\________/      ");
 
 
-            Console.WriteLine(PetName + "'s Health Status:");
 
-            Console.WriteLine("Health is full at 10.");
+                Console.WriteLine("Health is full at 10.");
+                Console.WriteLine("\nDon't let your sharks health reach 0 or they will return to the wild!");
 
-            Console.WriteLine("\nHunger: " + Hunger);
-            Console.WriteLine("Waste:  " + Waste);
-            Console.WriteLine("Play:   " + Play);
+                Console.WriteLine("\nHunger: " + Hunger);
+                Console.WriteLine("Waste:  " + Waste);
+                Console.WriteLine("Play:   " + Play);
 
-            Console.WriteLine("\nPress enter to hangout with " + PetName);
+                Console.WriteLine("\nPress enter to hangout with " + PetName);
+            }
             Console.ReadKey();
-            return MainMenu();
+            MainMenu();
 
 
         }
 
-        public int MainMenu()
+        public void MainMenu()
         {
             Console.Clear();
             int menuChoice = 0;
+                    
+            Console.WriteLine("           _________         .     .    ");
+            Console.WriteLine("          (..       \\_    ,  |\\   /|   ");
+            Console.WriteLine("           \\       0  \\  /|    \\\\//   ");
+            Console.WriteLine("            \\______    \\/ |   \\   /     ");
+            Console.WriteLine("                vvvv\\   \\ |   /   |     ");
+            Console.WriteLine("                 ^^^^  ==  \\_/    |     ");
+            Console.WriteLine("                 `\\_ ===   \\.     |    ");
+            Console.WriteLine("                 / /\\_   \\ /      |    ");
+            Console.WriteLine("                 |/   \\_  \\|      /     ");
+            Console.WriteLine("                        \\________/      ");
+
+
+
+
+
 
             Console.WriteLine("\nChoose an option below to interact with " + PetName + "!");
             Console.WriteLine("\n1. Feed");
@@ -57,14 +156,14 @@ namespace VirtualPet
 
 
 
-            while (true)
+            while (IsAlive())
             {
+                
                 string userChoice = Console.ReadLine();
                 if (userChoice == "1" || userChoice == "2" || userChoice == "3" || userChoice == "4")
                 {
                 menuChoice = Convert.ToInt32(userChoice);
-                }               
-                                           
+                }                                                                  
                 if (menuChoice == 1)
                 {
                     Feed();
@@ -82,16 +181,16 @@ namespace VirtualPet
                 }
                 else if (menuChoice == 4)
                 {
-                    PetHealthStatus();
-                    
-                }
+                    PetHealthStatus();                                        
+                }               
                 else
                 {
                     Console.WriteLine("Invalid entry, please choose number from list above, press any key to continue.");
                     Console.ReadLine();
-                    return MainMenu();
+                    MainMenu();
                 }
             }
+            
         }
 
         public void Feed()
@@ -102,11 +201,13 @@ namespace VirtualPet
                 if (Hunger >= 10)
                 {
                     Console.WriteLine("Your pet is full!");
+                    Console.WriteLine("Check " + PetName + "'s Health Status by selecting option 4.");
                 }
                 else
                 {
                     Hunger += 2;
                     Waste -= 1;
+                    Play -= 1;
                     PetHealthStatus();
                 }
             }
@@ -120,11 +221,13 @@ namespace VirtualPet
                 if (Waste >= 10)
                 {
                     Console.WriteLine(PetName + " doesn't need to go out!");
+                    Console.WriteLine("Check " + PetName + "'s Health Status by selecting option 4.");
                 }
                 else
                 {
                     Waste++;
-                    PetHealthStatus();
+                    Play -= 1;
+                    PetHealthStatus();                    
                 }
             }
             
@@ -137,21 +240,35 @@ namespace VirtualPet
                 if (Play >= 10)
                 {
                     Console.WriteLine(PetName + " doesn't want to play!");
+                    Console.WriteLine("Check " + PetName + "'s Health Status by selecting option 4.");
                 }
                 else
                 {
                     Play += 2;
-                    Hunger -= 2;
-                    PetHealthStatus();
+                    Hunger -= 1;
+                    PetHealthStatus();                   
                 }
             }
             
         }
 
+        public bool IsAlive()
+        {
+            if (Hunger >= MinHealth && Waste >= MinHealth && Play >= MinHealth)
+            {                         
+                return true;                
+            }
+            else
+            {             
+                return false;
+            }
+        }
+
+
         public int Tick()
         {// Put Tick in Feed()
             Hunger -= 1;            
-            Play += 1;
+            Play -= 1;
 
             return 0;
 
