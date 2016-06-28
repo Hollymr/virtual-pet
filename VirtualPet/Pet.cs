@@ -20,16 +20,14 @@ namespace VirtualPet
             }                                         
            set
             {
-                _hunger = value;
+                _hunger = value;               
                 if (_hunger > 10)
                 {
                     _hunger = MaxHealth;
                 }
                 if (_hunger < MinHealth)
-                {
-                    //_hunger = MinHealth;
-                    IsAlive();
-                    
+                {                    
+                    IsAlive();                    
                 }
             }
         }
@@ -48,12 +46,11 @@ namespace VirtualPet
                     _waste = MaxHealth;
                 }
                 if (_waste < MinHealth)
-                {
-                    //_waste = MinHealth;
+                {                    
                     IsAlive();
                 }
             }
-                }
+        }
         private int _play;
         public int Play
         {
@@ -90,14 +87,15 @@ namespace VirtualPet
 
         public void PetHealthStatus()
         {
-            
+            // Tells you that your pet has escaped to fend for himself
+            // Or what your pets health status is at
             if(!IsAlive())
             {
                 Console.WriteLine("You let your sharks health get to low, so "+PetName+ " escaped into the wild!");
             }
 
             else
-            { Console.Clear();
+            {   Console.Clear();
                 Console.WriteLine(PetName + "'s Health Status:");
                 Console.WriteLine("           _________         .     .    ");
                 Console.WriteLine("          (..       \\_    ,  |\\   /|   ");
@@ -166,18 +164,15 @@ namespace VirtualPet
                 }                                                                  
                 if (menuChoice == 1)
                 {
-                    Feed();
-                   
+                    Feed();                   
                 }
                 else if (menuChoice == 2)
                 {
-                    Bathroom();
-                    
+                    Bathroom();                    
                 }
                 else if (menuChoice == 3)
-                {
-                    Exercise();
-                    
+                {                    
+                    Exercise();              
                 }
                 else if (menuChoice == 4)
                 {
@@ -236,12 +231,12 @@ namespace VirtualPet
         public void Exercise()
         {
             for (int i = 1; i <= 1; i++)
-            {
-                if (Play >= 10)
+            {                
+                if (Play == 10)
                 {
                     Console.WriteLine(PetName + " doesn't want to play!");
                     Console.WriteLine("Check " + PetName + "'s Health Status by selecting option 4.");
-                }
+                }                          
                 else
                 {
                     Play += 2;
@@ -266,7 +261,7 @@ namespace VirtualPet
 
 
         public int Tick()
-        {// Put Tick in Feed()
+        {// Tick goes off everytime owner is feeing pet
             Hunger -= 1;            
             Play -= 1;
 

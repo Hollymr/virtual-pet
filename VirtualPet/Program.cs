@@ -16,7 +16,7 @@ namespace VirtualPet
             Console.WriteLine("Welcome, meet your new pet shark!");
 
 
-
+            // Stretch task
             Console.WriteLine("           _________         .     .    ");
             Console.WriteLine("          (..       \\_    ,  |\\   /|   ");
             Console.WriteLine("           \\       0  \\  /|    \\\\//   ");
@@ -29,15 +29,13 @@ namespace VirtualPet
             Console.WriteLine("                        \\________/      ");
    
 
-                    Console.WriteLine("\nPlease name your pet.");
+            Console.WriteLine("\nPlease name your pet.");
             myPet.PetName = Console.ReadLine();
 
 
             while (myPet.IsAlive())
             {
-                
-                myPet.PetHealthStatus();
-               
+               myPet.PetHealthStatus();                             
             }
 
             Console.ReadKey();
